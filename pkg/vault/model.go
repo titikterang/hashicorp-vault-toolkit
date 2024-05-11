@@ -20,7 +20,6 @@ const (
 type Config struct {
 	VaultHost        string
 	VaultToken       string
-	SecretPath       string
 	APIConfig        *APIConfig
 	HttpClientConfig *HttpClientConfig
 }
@@ -44,27 +43,3 @@ type VaultAPI struct {
 	CircuitBreaker *circuit.Breaker
 	Client         *http.Client
 }
-
-type (
-	VaultKV2RespData struct {
-		Data VaultResponseData `json:"data"`
-	}
-
-	VaultResponseData struct {
-		RequestId     string `json:"request_id"`
-		LeaseId       string `json:"lease_id"`
-		Renewable     bool   `json:"renewable"`
-		LeaseDuration int    `json:"lease_duration"`
-		Data          any    `json:"data"`
-	}
-
-	RawFileVaultResponseData struct {
-		Data struct {
-			RequestId     string `json:"request_id"`
-			LeaseId       string `json:"lease_id"`
-			Renewable     bool   `json:"renewable"`
-			LeaseDuration int    `json:"lease_duration"`
-			RawData       any    `json:"data"`
-		} `json:"data"`
-	}
-)
